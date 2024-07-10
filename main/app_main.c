@@ -9,6 +9,9 @@ static const char *TAG = "golioth_audio_upload";
 /* Devic PMU Control */
 #include "m5stack_core2.h"
 
+/* Microphone and SD Card */
+#include "audio.h"
+
 /* Golioth */
 #include "nvs.h"
 #include "shell.h"
@@ -47,7 +50,7 @@ void app_main(void)
 
     if (!nvs_credentials_are_set())
     {
-        ESP_LOGW(TAG,
+        GLTH_LOGW(TAG,
                  "WiFi and Golioth credentials are not set. "
                  "Use the shell settings commands to set them.");
 
@@ -71,6 +74,20 @@ void app_main(void)
     xSemaphoreTake(_connected_sem, portMAX_DELAY);
 
     int counter = 0;
+
+    /* Record Audio */
+    struct audio_ctx a_ctx = audio_ctx_default();
+    mount_sdcard();
+    init_microphone();
+
+    GLTH_LOGI(TAG, "Starting recording for %"PRIu32" seconds!", a_ctx.rec_time);
+
+    record_wav(&a_ctx);
+
+    /* TODO: Stream to Golioth */
+
+    /* Unmount and disable SD card */
+    unmount_and_free();
 
     while (true)
     {

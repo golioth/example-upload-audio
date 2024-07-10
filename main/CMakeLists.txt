@@ -15,6 +15,7 @@ set(bsp_includes
 
 idf_component_register(SRCS
                         "app_main.c"
+                        "audio.c"
                         "${esp_idf_common}/shell.c"
                         "${esp_idf_common}/wifi.c"
                         "${esp_idf_common}/nvs.c"
