@@ -6,6 +6,9 @@
 
 static const char *TAG = "golioth_audio_upload";
 
+/* Devic PMU Control */
+#include "m5stack_core2.h"
+
 /* Golioth */
 #include "nvs.h"
 #include "shell.h"
@@ -32,10 +35,12 @@ static void on_client_event(struct golioth_client *client,
 
 void app_main(void)
 {
-    /* Golioth connection */
-
     GLTH_LOGI(TAG, "Start Golioth upload audio example");
 
+    /* Initialize PMU */
+    m5stack_core2_init_pmu();
+
+    /* Golioth connection */
     /* Get credentials from NVS and enable shell */
     nvs_init();
     shell_start();
