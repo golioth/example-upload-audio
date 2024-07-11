@@ -58,7 +58,7 @@ menu "Example Configuration"
 
     config EXAMPLE_REC_TIME
         int "Example Recording Time in Seconds"
-        default 3
+        default 2
         help
             Set the time for recording audio in seconds.
 

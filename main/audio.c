@@ -25,7 +25,6 @@ static const char *TAG = "audio_and_sd";
 
 #define SPI_DMA_CHAN        SPI_DMA_CH_AUTO
 #define NUM_CHANNELS        (1) // For mono recording only!
-#define SD_MOUNT_POINT      "/sdcard"
 #define FILENAME_DEFAULT    "record.wav"
 #define SAMPLE_SIZE         (CONFIG_EXAMPLE_BIT_SAMPLE * 1024)
 #define BYTE_RATE           (CONFIG_EXAMPLE_SAMPLE_RATE * (CONFIG_EXAMPLE_BIT_SAMPLE / 8)) * NUM_CHANNELS
