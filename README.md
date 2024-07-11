@@ -33,3 +33,14 @@ esp32> settings set golioth/psk-id <my-psk-id@my-project>
 esp32> settings set golioth/psk <my-psk>
 esp32> kernel reboot cold
 ```
+
+## Data Route Setup
+
+- Create an Amazon S3 bucket and generate a credential that allows
+  upload to it.
+- Use add the contents of the YAML file in the pipelines directory of
+  this repository to your Golioth project.
+- Use your S3 credential to set up the follow secrets in your Golioth
+  project:
+  - AWS_S3_ACCESS_KEY
+  - AWS_S3_ACCESS_SECRET

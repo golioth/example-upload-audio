@@ -1,6 +1,10 @@
 #pragma once
 
+#include <stdbool.h>
+#include <stddef.h>
 #include <stdint.h>
+
+#define SD_MOUNT_POINT      "/sdcard"
 
 struct audio_ctx {
     char filename[32];
