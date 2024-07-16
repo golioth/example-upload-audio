@@ -6,9 +6,6 @@
 
 static const char *TAG = "golioth_audio_upload";
 
-/* Devic PMU Control */
-#include "m5stack_core2.h"
-
 /* Microphone and SD Card */
 #include <stdio.h>
 #include <sys/stat.h>
@@ -23,6 +20,16 @@ static const char *TAG = "golioth_audio_upload";
 #include <golioth/stream.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
+
+#ifdef CONFIG_IDF_TARGET_ESP32
+/* m5stack Core2 support*/
+#include "m5stack_core2.h"
+#endif /* CONFIG_IDF_TARGET_ESP32 */
+
+#ifdef CONFIG_IDF_TARGET_ESP32S3
+/* m5stack CoreS3 support*/
+#include "bsp/m5stack_core_s3.h"
+#endif /* CONFIG_IDF_TARGET_ESP32S3 */
 
 static SemaphoreHandle_t _connected_sem = NULL;
 
@@ -133,8 +140,10 @@ void app_main(void)
 {
     GLTH_LOGI(TAG, "Start Golioth upload audio example");
 
+#ifdef CONFIG_IDF_TARGET_ESP32
     /* Initialize PMU */
     m5stack_core2_init_pmu();
+#endif
 
     /* Golioth connection */
     /* Get credentials from NVS and enable shell */
@@ -168,7 +177,7 @@ void app_main(void)
 
     /* Record Audio */
     struct audio_ctx a_ctx = audio_ctx_default();
-    mount_sdcard();
+    bsp_sdcard_mount();
     init_microphone();
 
     GLTH_LOGI(TAG, "Starting recording for %" PRIu32 " seconds!", a_ctx.rec_time);
@@ -195,5 +204,5 @@ void app_main(void)
     release_audio_filestream(f);
 
     /* Unmount and disable SD card */
-    unmount_and_free();
+    bsp_sdcard_unmount();
 }

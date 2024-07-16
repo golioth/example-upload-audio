@@ -17,3 +17,7 @@ tags
 tags.lock
 tags.temp
 __pycache__
+
+# Component directory
+managed_components
+dependencies.lock
