@@ -21,10 +21,23 @@ utilize a higher upload size limit.
 
 ## Building the Application and Assign Credentials
 
+### Build for m5stack Core2
+
 ```
+idf.py set-target esp32
 idf.py build
 idf.py flash monitor
 ```
+
+### Build for m5stack CoreS3
+
+```
+idf.py set-target esp32s3
+idf.py build
+idf.py flash monitor
+```
+
+### Provisioning
 
 ```
 esp32> settings set wifi/ssid <my-wifi-ssid>
