@@ -17,9 +17,6 @@ CONFIG_GOLIOTH_COAP_REQUEST_QUEUE_MAX_ITEMS=20
 # Golioth Services
 CONFIG_GOLIOTH_STREAM=y
 
-# Block upload on Dev server for now
-CONFIG_GOLIOTH_COAP_HOST_URI="coaps://coap.golioth.dev"
-
 # Interactive console on m5stack CoreS3
 CONFIG_ESP_CONSOLE_UART_DEFAULT=n
 CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y
