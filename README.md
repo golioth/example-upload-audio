@@ -14,11 +14,6 @@ cd example-upload-audio
 git submodule update --init --recursive
 ```
 
-## Note: Use Golioth Dev Server
-
-This app is currently configured to connect to the Golioth dev server to
-utilize a higher upload size limit.
-
 ## Building the Application and Assign Credentials
 
 ### Build for m5stack Core2
